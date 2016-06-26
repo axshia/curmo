@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::get('/login', 'LoginController@index');
 Route::get('/login/google', 'LoginController@loginWithGoogle');
+Route::get('/login/twitter', 'LoginController@loginWithTwitter');

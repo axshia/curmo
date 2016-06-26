@@ -17,6 +17,10 @@ elixir(function (mix) {
         .scripts([
             'resources/assets/js'
         ])
+        .copy(
+            'node_modules/font-awesome/fonts',
+            'public/build/fonts'
+        )
         .version([
             'css/app.css',
             'js/all.js'

@@ -162,6 +162,7 @@ return [
          * 追加
          */
         Artdarek\OAuth\OAuthServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 
