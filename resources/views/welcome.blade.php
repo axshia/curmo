@@ -1,45 +1,27 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+@extends('layouts.main')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('page_title')
+    車で困ったときのQ&Aコミュニティ
+@stop
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+@section('body')
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+    <!--start hero header area-->
+    <div class="hero-image-container">
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+        <!--start content header-->
+        <div class="container container-hero">
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
+    <span class="row row-hero hero-image hero-home-lg hero-home">
+    </span>
 
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
         </div>
-    </body>
-</html>
+        <!--end content header-->
+
+    </div>
+    <!--end hero header area-->
+
+    <div class="container">
+        Hello Laravel with Blade!!
+    </div>
+@stop
