@@ -15,7 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//ログイン
 Route::get('/login', 'LoginController@index');
 Route::get('/login/google', 'LoginController@loginWithGoogle');
 Route::get('/login/twitter', 'LoginController@loginWithTwitter');
 Route::get('/login/facebook', 'LoginController@loginWithFacebook');
+
+//質問
+Route::get('/questions', 'QuestionsController@index');
+Route::get('/questions/create', 'QuestionsController@create');
