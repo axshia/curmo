@@ -49,12 +49,20 @@ class LoginController extends Controller
                 ->where('google_id', $result['id'])
                 ->first();
 
-            if($user === null){
+            if ($user === null) {
                 $user = User::create([
                     'name' => $result['name'],
                     'email' => $result['email'],
                     'google_id' => $result['id']
                 ]);
+            }
+
+            $user = Auth::loginUsingId($user->id, true);
+
+            if ($user !== null) {
+                return redirect()->intended('/');
+            } else {
+                return redirect()->intended('/login');
             }
 
 
@@ -70,7 +78,7 @@ class LoginController extends Controller
     public function loginWithTwitter(Request $request)
     {
         // get data from request
-        $token  = $request->get('oauth_token');
+        $token = $request->get('oauth_token');
         $verify = $request->get('oauth_verifier');
 
         // get twitter service
@@ -79,8 +87,7 @@ class LoginController extends Controller
         // check if code is valid
 
         // if code is provided get user data and sign in
-        if ( ! is_null($token) && ! is_null($verify))
-        {
+        if (!is_null($token) && !is_null($verify)) {
             // This was a callback request from twitter, get the token
             $token = $tw->requestAccessToken($token, $verify);
 
@@ -88,15 +95,13 @@ class LoginController extends Controller
             $result = json_decode($tw->request('account/verify_credentials.json'), true);
 
             $message = 'Your unique Twitter user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-            echo $message. "<br/>";
+            echo $message . "<br/>";
 
             //Var_dump
             //display whole array.
             dd($result);
-        }
-        // if not ask for permission first
-        else
-        {
+        } // if not ask for permission first
+        else {
             // get request token
             $reqToken = $tw->requestRequestToken();
 
@@ -119,8 +124,7 @@ class LoginController extends Controller
         // check if code is valid
 
         // if code is provided get user data and sign in
-        if ( ! is_null($code))
-        {
+        if (!is_null($code)) {
             // This was a callback request from facebook, get the token
             $token = $fb->requestAccessToken($code);
 
@@ -128,15 +132,13 @@ class LoginController extends Controller
             $result = json_decode($fb->request('/me?fields=id,name,email'), true);
 
             $message = 'Your unique facebook user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-            echo $message. "<br/>";
+            echo $message . "<br/>";
 
             //Var_dump
             //display whole array.
             dd($result);
-        }
-        // if not ask for permission first
-        else
-        {
+        } // if not ask for permission first
+        else {
             // get fb authorization
             $url = $fb->getAuthorizationUri();
 

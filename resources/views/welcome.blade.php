@@ -6,22 +6,21 @@
 
 @section('body')
 
-    <!--start hero header area-->
-    <div class="hero-image-container">
-
-        <!--start content header-->
-        <div class="container container-hero">
-
-    <span class="row row-hero hero-image hero-home-lg hero-home">
-    </span>
-
-        </div>
-        <!--end content header-->
-
-    </div>
-    <!--end hero header area-->
-
     <div class="container">
-        Hello Laravel with Blade!!
+        <div class="row">
+            <div class="col-lg-8">
+                <?php for ($i = 0;$i < 10;$i++):?>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        質問です！
+                    </div>
+                </div>
+                <?php endfor;?>
+            </div>
+
+            <div class="col-lg-4">
+                @include('components.sidebar')
+            </div>
+        </div>
     </div>
 @stop

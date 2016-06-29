@@ -10,8 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * Class User
  * @package App
  */
-class User extends Model
+class User extends Authenticatable
 {
+
     /**
      * The attributes that are mass assignable.
      *

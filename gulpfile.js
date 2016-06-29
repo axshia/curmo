@@ -14,6 +14,7 @@ var elixir = require('laravel-elixir');
 elixir(function (mix) {
     mix
         .sass('app.scss')
+        .browserify('app.js')
         .scripts([
             'resources/assets/js'
         ])
@@ -23,7 +24,7 @@ elixir(function (mix) {
         )
         .version([
             'css/app.css',
-            'js/all.js'
+            'js/app.js'
         ])
         .browserSync({
             proxy: 'curmo.app'
