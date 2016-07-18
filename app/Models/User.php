@@ -1,19 +1,14 @@
 <?php
 
-namespace App;
-
-use Collective\Annotations\Database\Eloquent\Annotations\Annotations\Bind;
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
  *
  * @package App
- * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends BaseModel
 {
     /**
      * The attributes that are mass assignable.
@@ -35,7 +30,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token'
+        'password',
+        'remember_token'
     ];
 
     public $timestamps = true;

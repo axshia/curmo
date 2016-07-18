@@ -11,6 +11,11 @@
 |
 */
 
+Route::group(['prefix' => 'api', 'namespace' => 'Api', 'middleware' => 'api'], function()
+{
+    Route::get('/comments', 'CommentController@index');
+});
+
 Route::get('/', 'PagesController@index');
 
 Route::get('logout', function () {

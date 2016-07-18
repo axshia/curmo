@@ -25,7 +25,7 @@ class AnnotationsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $scanModels = [
-        'App\User',
+        'App\Models\User',
     ];
 
     /**

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
 
 class Search extends Model
@@ -20,16 +20,14 @@ class Search extends Model
 
         $agent = new Agent();
 
-        if($agent->isDesktop()){
-            return Comments::join('users', 'users.id', '=', 'comments.users_id')
-                ->where($conditions)
-                ->orderBy('comments.created_at', 'desc')
-                ->paginate(20);
+        $model = Comments::join('users', 'users.id', '=', 'comments.users_id')
+            ->where($conditions)
+            ->orderBy('comments.created_at', 'desc');
+
+        if ($agent->isDesktop()) {
+            return $model->paginate(20);
         }
 
-        return Comments::join('users', 'users.id', '=', 'comments.users_id')
-            ->where($conditions)
-            ->orderBy('comments.created_at', 'desc')
-            ->simplePaginate(20);
+        return $model->simplePaginate(20);
     }
 }

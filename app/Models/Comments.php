@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comments extends Model
+class Comments extends BaseModel
 {
     protected $fillable = [
         'users_id',
