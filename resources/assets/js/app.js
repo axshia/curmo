@@ -1,10 +1,14 @@
 import $ from 'jquery';
 
 window.jQuery = $;
-window.$      = $;
+window.$ = $;
+
+//共通コンポーネントを格納する
+window.component = {
+    $modal: require('./component/modal').Modal()
+};
 
 require('bootstrap-sass');
 
-(function () {
-    var test = '';
-})();
+//共通エレメント
+require('./header').Header();

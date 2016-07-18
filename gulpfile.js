@@ -23,6 +23,7 @@ elixir(function (mix) {
             'public/build/fonts'
         )
         .version([
+            'css/all.css',
             'css/app.css',
             'js/app.js'
         ])

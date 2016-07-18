@@ -2,4 +2,11 @@
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 @import "node_modules/bootstrap-social/bootstrap-social.scss";
 
+@import "common/base";
+@import "common/header";
+@import "common/footer";
 @import "common/hero";
+@import "common/btn";
+@import "common/card";
+@import "common/tab";
+@import "common/panel";

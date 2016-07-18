@@ -2,24 +2,31 @@
 
 namespace App;
 
+use Collective\Annotations\Database\Eloquent\Annotations\Annotations\Bind;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
+ *
  * @package App
+ * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'google_id'
+        'addresses_id',
+        'name',
+        'email',
+        'password',
+        'picture',
+        'google_id'
     ];
 
     /**

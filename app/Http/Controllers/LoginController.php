@@ -13,6 +13,8 @@ class LoginController extends Controller
 {
     const GOOGLE_AUTH_URL = 'https://www.googleapis.com/oauth2/v1/userinfo';
 
+    const SESSION_NAME_OAUTH = 'OAuth';
+
     /**
      * ログイン画面の表示
      *
@@ -45,26 +47,23 @@ class LoginController extends Controller
             // Send a request with it
             $result = json_decode($googleService->request(self::GOOGLE_AUTH_URL), true);
 
-            $user = DB::table('users')
-                ->where('google_id', $result['id'])
-                ->first();
+            $user = User::firstOrNew([
+                'google_id' => $result['id'],
+                'deleted_at' => null
+            ]);
 
-            if ($user === null) {
-                $user = User::create([
-                    'name' => $result['name'],
-                    'email' => $result['email'],
-                    'google_id' => $result['id']
-                ]);
-            }
-
-            $user = Auth::loginUsingId($user->id, true);
-
-            if ($user !== null) {
+            if ($user->id !== null) {
+                Auth::loginUsingId($user->id, true);
                 return redirect()->intended('/');
-            } else {
-                return redirect()->intended('/login');
             }
 
+            $user->name = $result['name'];
+            $user->email = $result['email'];
+            $user->picture = $result['picture'];
+
+            $request->session()->put(self::SESSION_NAME_OAUTH, $user);
+
+            return view('login.input', compact(['user']));
 
         } else {
             // get googleService authorization
@@ -145,6 +144,37 @@ class LoginController extends Controller
             // return to facebook login url
             return redirect((string)$url);
         }
+    }
+
+    /**
+     * 登録完了
+     * @param Request $request
+     * @return mixed
+     */
+    public function complete(Request $request)
+    {
+        $user = $request->session()->get(self::SESSION_NAME_OAUTH);
+
+        if ($user === null) {
+            return redirect('/');
+        }
+
+        $request->session()->remove(self::SESSION_NAME_OAUTH);
+
+
+        $user = User::where(['google_id' => $user['google_id']])
+            ->firstOrCreate([
+                'addresses_id' => $request->get('addresses_id'),
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'password' => $request->get('password'),
+                'picture' => $user['picture'],
+                'google_id' => $user['google_id']
+            ]);
+
+        Auth::loginUsingId($user->id, true);
+
+        return redirect('/');
     }
 
 }

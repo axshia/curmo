@@ -163,7 +163,9 @@ return [
          */
         Artdarek\OAuth\OAuthServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
+        App\Providers\AnnotationsServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
     ],
 
     /*
@@ -214,7 +216,9 @@ return [
          * 追加
          */
         'OAuth' => Artdarek\OAuth\Facade\OAuth::class,
-
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class
     ],
 
 ];

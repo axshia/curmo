@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-lg-7">
+            <div class="col-lg-7 col-md-7">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         ここにメッセージが入る
@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-5">
+            <div class="col-lg-5 col-md-5">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         CURMOへログイン
