@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterUsersTable extends Migration
+class AddPictureUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class AlterUsersTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasColumn('users', 'addresses_id')) {
+        if (!Schema::hasColumn('users', 'picture')) {
             Schema::table('users', function ($table) {
-                $table->integer('addresses_id')
-                    ->after('id');
+                $table->string('picture')
+                    ->after('password');
             });
         }
     }
@@ -27,9 +27,9 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasColumn('users', 'addresses_id')) {
+        if (Schema::hasColumn('users', 'picture')) {
             Schema::table('users', function ($table) {
-                $table->dropColumn('addresses_id');
+                $table->dropColumn('picture');
             });
         }
     }
