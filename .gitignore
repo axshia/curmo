@@ -8,6 +8,8 @@
 Homestead.yaml
 Homestead.json
 .env
+Homestead
+curmo.iml
 
 /public/build
 /public/css
